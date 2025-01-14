@@ -1,5 +1,6 @@
 import User from "../models/userModel.js";
 import bcrypt from "bcrypt";
+import createJWTtoken from "../utils/createJWTtoken.js";
 
 export const signup = async (req,res)=>{
     
@@ -33,9 +34,16 @@ export const signup = async (req,res)=>{
             profilepic: gender==='male'?boyprofilepic:girlprofilepic
         })
 
-        await newUser.save();
-
-        res.status(201).json({newUser});
+        if(newUser)
+        {
+            //create and set token
+            createJWTtoken(newUser._id,res);
+            await newUser.save();
+            res.status(200).json({message:"user is registered successfully"});
+            
+        } else {
+            res.status(400).json({error:'Data is not valid'});
+        }
 
         
     } catch (error) {
