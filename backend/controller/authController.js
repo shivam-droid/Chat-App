@@ -52,10 +52,37 @@ export const signup = async (req,res)=>{
     }
 }
 
-export const login = (req,res)=>{
-    res.send("you are logged in");
+export const login = async (req,res)=>{
+    try {
+
+        const {username,password} = req.body;
+        const user = await User.findOne({ username });
+        if (user) {
+            const match = await bcrypt.compare(password, user.password);
+            if (match) {
+                // Create and set token
+                createJWTtoken(user._id, res);
+                return res.status(200).json({ message: "User is logged in successfully", user });
+            }
+        }
+
+        res.status(400).json({ error: "Username or password is incorrect" });
+        
+    } catch (error) {
+        console.log("error: error in login controller",error.message);
+        res.send(500).json({error:"internal server error"});
+    }
 }
 
 export const logout = (req,res)=>{
-    res.send("you are logged out");
+    try {
+
+    //clearing cookie
+    res.cookie('jwt','',{maxAge:0});
+    res.status(200).json({message:"user is logged out successfully"});
+        
+    } catch (error) {
+        console.log("error: error in logout controller",error.message);
+        res.status(500).json({error:"internal server error"});
+    }
 }

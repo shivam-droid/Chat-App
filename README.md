@@ -33,3 +33,5 @@ chat-app/
 - Created authController for signup,login,logout routes
 - connect to DB 
 - Signup Endpoint 
+- Login Endpoint
+- Logout EndPoint
