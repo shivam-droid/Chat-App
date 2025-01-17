@@ -1,6 +1,11 @@
+//package import
 import express from "express";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser"; //cookie parser
+
+//file import
 import authRoutes from "./routes/authRoute.js";
+import messageRoutes from "./routes/messageRoute.js";
 import connectToDB  from "./DB/ConnectToDB.js";
 
 dotenv.config();
@@ -9,13 +14,13 @@ const app = express();
 
 const PORT = process.env.PORT || 6000;
 
-app.get("/", (req, res) => {
-  res.send("hello World!!");
-});
-
+//middleware
 app.use(express.json());
+app.use(cookieParser());
 
-app.use("/auth/api/", authRoutes);
+//routes
+app.use("/api/auth", authRoutes);
+app.use('/api/message', messageRoutes);
 
 
 app.listen(PORT, async(req, res) => {
