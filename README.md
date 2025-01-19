@@ -11,6 +11,17 @@ The **Chat App** is a real-time communication platform developed using the **MER
 
 ---
 
+## API's
+
+  - /api/auth/signup *(For signup)*
+  - /api/auth/login *(For login)*
+  - /api/auth/logout *(For logout)*
+  - /api/messages/user/:id *(For sending message)*
+  - /api/messages/:id *(For getting conversation)*
+  - /api/users/ *(For getting all users in DB)*
+
+
+---
 ## ⚙️ Steps to Build  
 
 ### Backend  
@@ -19,7 +30,8 @@ The **Chat App** is a real-time communication platform developed using the **MER
 3. Implement middleware for authentication.  
 4. Create and define API routes:  
    - **authRoutes**: Signup, login, logout.  
-   - **messageRoutes**: Send and fetch messages.  
+   - **messageRoutes**: Send and fetch messages. 
+   - **userRoutes**: Get all Users for sidebar. 
 5. Define MongoDB schemas and models:  
    - **User**: Stores user credentials.  
    - **Message & Conversation**: Manages chat data.  
@@ -31,6 +43,8 @@ The **Chat App** is a real-time communication platform developed using the **MER
    - **messageController**: Manages chat functionality.  
      - Send Message Endpoint  
      - Get Message Endpoint  
+   - **userController**: Manage all users for sidebar.
+    - Get All users Endpoint
 
 ### Frontend  
 1. Create a responsive React application.  

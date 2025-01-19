@@ -12,7 +12,7 @@ const protectRoute = async (req,res,next) =>{
         if(!decoded){
             return res.send(401).json({error:"invalid token"});
         }
-        const user = await User.findById(decoded.user_id).select("-password");
+        const user = await User.findById(decoded.user_id).select("-password"); // exclude password
         req.user = user;
         next();
 

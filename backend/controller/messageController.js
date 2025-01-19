@@ -24,7 +24,7 @@ export const sendMessage = async (req, res) => {
     });
 
     if (!conversation) {
-      conversation = await Conversation.create({
+      conversation = await Conversation.create({  // if using create then we don't need to save it automatically create and save 
         participants: [senderId, receiverId],
         messages: [newMessage],
       });
@@ -45,7 +45,10 @@ export const getMessages = async (req, res) => {
     const senderId = req.user._id;
     const conversation = await Conversation.findOne({
       participants: { $all: [senderId, receiverId] },
-    }).populate("messages");
+    }).populate("messages"); // not reference but actual messages will be returned
+    if(!conversation){
+      return res.status(200).json([]);
+    };
     res.status(200).json(conversation.messages);
   } catch (error) {
     console.log("error: error in getMessages controller", error.message);
