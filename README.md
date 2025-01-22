@@ -45,9 +45,10 @@ The **Chat App** is a real-time communication platform developed using the **MER
      - Get Message Endpoint  
    - **userController**: Manage all users for sidebar.
     - Get All users Endpoint
+  
 
 ### Frontend  
-1. Create a responsive React application.  
+1. Create a Login page.  
 2. Develop reusable components (e.g., ChatBox, Navbar).  
 3. Define routes for navigation (e.g., Login, Signup, Chat).  
 4. Manage global state using React hooks or Redux.  
