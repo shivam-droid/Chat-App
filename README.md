@@ -51,7 +51,7 @@ The **Chat App** is a real-time communication platform developed using the **MER
 1. Create a Login page.  
 2. Develop reusable components (e.g., ChatBox, Navbar).  
 3. Define routes for navigation (e.g., Login, Signup, Chat).  
-4. Manage global state using React hooks or Redux.  
+4. Manage global state using React hooks or Zustand.  
 
 ---
 
@@ -71,10 +71,14 @@ The **Chat App** is a real-time communication platform developed using the **MER
 
 ## 🌟 Features  
 
-- 🔒 **Authentication**: User signup, login, and logout.  
-- 💬 **Real-Time Messaging**: Chat with other users seamlessly.  
-- 📄 **Database Integration**: Securely store user and message data.  
-- 🖥️ **Responsive UI**: Optimized for desktop and mobile devices.  
+  - 🌟 Tech stack: MERN + Socket.io + TailwindCSS + Daisy UI
+  - 🎃 Authentication && Authorization with JWT
+  - 👾 Real-time messaging with Socket.io
+  - 🚀 Online user status (Socket.io and React Context)
+  - 👌 Global state management with Zustand
+  - 🐞 Error handling both on the server and on the client
+  - ⭐ At the end Deployment like a pro for FREE!
+  - ⏳ And much more!
 
 ---
 
