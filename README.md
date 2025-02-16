@@ -50,8 +50,9 @@ The **Chat App** is a real-time communication platform developed using the **MER
 ### Frontend  
 1. Create a Login page.  
 2. Develop reusable components (e.g., ChatBox, Navbar).  
-3. Define routes for navigation (e.g., Login, Signup, Chat).  
-4. Manage global state using React hooks or Zustand.  
+3. Define routes for navigation (e.g., Login, Signup, Chat). 
+4. Used Context API for user authentication  
+5. Manage global state using React hooks or Zustand.  
 
 ---
 

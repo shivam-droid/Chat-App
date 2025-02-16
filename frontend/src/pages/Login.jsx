@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useRef } from "react";
 import GenderCheckBox from "../components/GenderCheckBox.jsx";
 import useSignup from "../hooks/useSignup.js";
+import useSignin from "../hooks/useSignin.js";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = React.useState(true);
@@ -18,16 +19,27 @@ const Login = () => {
     setGender(gender);
   }
 
-  const {loading,signup} = useSignup();
+  const {loading: signupLoading, signup} = useSignup();
+  const {loading: signinLoading, signin} = useSignin();
   const handleSubmit = async (e) => {
     e.preventDefault();
     const username = usernameRef.current.value;
     const password = passwordRef.current.value;
-    const fullname = fullnameRef.current.value;
-    const confirmPassword = confirmPasswordRef.current.value;
+    const fullname = !isSignIn ? fullnameRef.current.value : null;
+    const confirmPassword = !isSignIn ? confirmPasswordRef.current.value : null;
 
     //console.log(fullname, username, password, confirmPassword, gender);
-    await signup(fullname, username, password, confirmPassword,gender);
+    if(!isSignIn)
+    {
+      await signup(fullname, username, password, confirmPassword,gender);
+    }
+    
+    if(isSignIn){
+      await signin(
+        username,
+        password
+      )
+    }
 
   }
 
@@ -114,8 +126,8 @@ const Login = () => {
               {isSignIn ? "Login" : "SignUp"}
             </button>
           </div>
-          <div>
-            <span className="text-gray-300 p-2 text-base label-text">
+          <div className="pt-2">
+            <span className="text-gray-300  text-base label-text">
               {" "}
               {isSignIn ? "Don't have an account?" : "Already have an account?"}
               <strong className="cursor-pointer" onClick={handleSignInToggle}>

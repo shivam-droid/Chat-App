@@ -5,10 +5,15 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   server: {
-    port:3000,
+    port:4000,
+    hmr: {
+      overlay: false, // Avoids UI freezing on HMR errors
+    },
     proxy: {
       '/api': {
-        target: 'http://localhost:5000'
+        target: 'http://localhost:5000',
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/api/, ''), // Ensures correct path forwarding
       }
     }
   },

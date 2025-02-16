@@ -62,10 +62,10 @@ export const login = async (req, res) => {
         return res
           .status(200)
           .json({
-            _id: newUser._id,
-            fullName: newUser.fullname,
-            username: newUser.username,
-            profilePic: newUser.profilepic,
+            _id: user._id,
+            fullName: user.fullname,
+            username: user.username,
+            profilePic: user.profilepic,
           });
       }
     }

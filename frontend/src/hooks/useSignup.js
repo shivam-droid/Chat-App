@@ -38,18 +38,22 @@ const useSignup = () => {
           gender,
         }),
       });
-      const data = await res.json();
-      if (data.error) {
-        throw new Error(data.error);
+      if (!res.ok) {
+        // Handle the case when the status is not ok
+        const data = await res.json();
+        throw new Error(data.error || "Login failed");
       }
-
-      localStorage.setItem("chat-user",JSON.stringify(data));
-      setAuthUser(data);
-      Navigate('/');
+      if(res.ok)
+      {
+        const data = await res.json();
+        localStorage.setItem("chat-user",JSON.stringify(data));
+        setAuthUser(data);
+        Navigate('/');
+      }
 
 
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
       toast.error("Failed to signup");
     } finally {
       setLoading(false);
