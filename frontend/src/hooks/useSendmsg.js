@@ -14,23 +14,24 @@ const useSendmsg = () => {
   const sendmsg = async (message) => {
     setLoading(true);
     try {
-      const res = await fetch(`/api/message/send/${selectedConversation._id}`, {
+      const res = await fetch(`/api/message/send/${selectedConversation?._id}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ message }),
+        body: JSON.stringify({message}),
       });
       if (!res.ok) {
         // Handle the case when the status is not ok
         const data = await res.json();
         throw new Error(data.error || "Login failed");
       }
-      if (res.ok) {
-        const data = await res.json();
-
-        dispatch(setMessages([...messages,data]));
+      const data = await res.json();
+      if (!data || !data.newMessage) {
+        throw new Error("Invalid response from server");
       }
+  
+      dispatch(addMessage(data.newMessage));
     } catch (error) {
       toast.error(error.message);
     } finally {
