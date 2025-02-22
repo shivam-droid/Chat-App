@@ -8,7 +8,6 @@ const useSendmsg = () => {
   const selectedConversation = useSelector(
     (state) => state.selectedConversation
   );
-  const messages = useSelector((state) => state.message.messages);
   const dispatch = useDispatch();
 
   const sendmsg = async (message) => {

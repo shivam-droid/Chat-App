@@ -9,9 +9,9 @@ import messageRoutes from "./routes/messageRoute.js";
 import userRoutes from "./routes/userRoute.js";
 import connectToDB  from "./DB/ConnectToDB.js";
 
-dotenv.config();
+import {app,server} from './socket/socket.js'
 
-const app = express();
+dotenv.config();
 
 const PORT = process.env.PORT || 6000;
 
@@ -25,7 +25,7 @@ app.use('/api/message', messageRoutes);
 app.use('/api/users', userRoutes);
 
 
-app.listen(PORT, async(req, res) => {
+server.listen(PORT, async(req, res) => {
   await connectToDB();
   console.log(`Server is running fine on Port ${PORT}`);
 });
